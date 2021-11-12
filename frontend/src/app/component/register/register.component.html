@@ -1,0 +1,156 @@
+<div class="row m-0 h-100">
+  <div
+    class="col p-0 text-center d-flex justify-content-center align-items-center display-none"
+  >
+    <img
+      src="https://res.cloudinary.com/te649/image/upload/v1628163665/649Te-Vasikes-Eikones%20Emvlimata/%CE%95%CE%9C%CE%92%CE%9B%CE%97%CE%9C%CE%91_79_%CE%91%CE%94%CE%A4%CE%95_lywxbq.png"
+      class="w-50"
+    />
+  </div>
+  <div
+    class="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100"
+  >
+    <form
+      #registerForm="ngForm"
+      (ngSubmit)="registerForm.form.valid && onRegister(registerForm)"
+      novalidate
+      class="w-75"
+    >
+      <div class="mb-3">
+        <label for="register-firstname" class="form-label">First Name</label>
+        <input
+          ngModel
+          #firstNameInput="ngModel"
+          name="firstName"
+          type="text"
+          class="form-control"
+          id="register-firstname"
+          placeholder="firstname"
+          autocomplete="name"
+          minlength="3"
+          maxlength="20"
+          required
+        />
+        <div
+          *ngIf="firstNameInput.errors && registerForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="firstNameInput.errors.required">
+            First name is required
+          </div>
+          <div *ngIf="firstNameInput.errors.minlength">
+            First name must be at least 3 characters
+          </div>
+          <div *ngIf="firstNameInput.errors.maxlength">
+            First name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="register-lastname" class="form-label">Last Name</label>
+        <input
+          ngModel
+          #lastNameInput="ngModel"
+          name="lastName"
+          type="text"
+          class="form-control"
+          id="register-lastname"
+          placeholder="lastname"
+          autocomplete="family-name"
+          minlength="3"
+          maxlength="20"
+          required
+        />
+        <div
+          *ngIf="lastNameInput.errors && registerForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="lastNameInput.errors.required">Last name is required</div>
+          <div *ngIf="lastNameInput.errors.minlength">
+            Last name must be at least 3 characters
+          </div>
+          <div *ngIf="lastNameInput.errors.maxlength">
+            Last name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="register-username" class="form-label">Username</label>
+        <input
+          ngModel
+          #usernameInput="ngModel"
+          name="username"
+          type="text"
+          class="form-control"
+          id="register-username"
+          placeholder="username"
+          autocomplete="username"
+          minlength="3"
+          maxlength="20"
+          required
+        />
+        <div
+          *ngIf="usernameInput.errors && registerForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="usernameInput.errors.required">Username is required</div>
+          <div *ngIf="usernameInput.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="usernameInput.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="login-password" class="form-label">Email</label>
+        <input
+          ngModel
+          #emailInput="ngModel"
+          name="email"
+          type="email"
+          class="form-control"
+          id="register-email"
+          placeholder="email"
+          autocomplete="email"
+          minlength="3"
+          required
+        />
+        <div
+          *ngIf="emailInput.errors && registerForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="emailInput.errors.required">Email is required</div>
+          <div *ngIf="emailInput.errors.minlength">
+            Email must be at least 3 characters
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="small fw-bold py-1 mb-0">
+            Already have an account?
+            <a
+              routerLink="/login"
+              routerLinkActive="router-link-active"
+              class="link-danger"
+              >Login</a
+            >
+          </p>
+        </div>
+        <div class="col-md-6 text-lg-end"></div>
+      </div>
+      <button
+        [disabled]="registerForm.invalid"
+        type="submit"
+        class="btn btn-custom btn-lg btn-block mt-3"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="row m-0 h-100">
+  <div
+    class="col p-0 text-center d-flex justify-content-center align-items-center display-none"
+  >
+    <img
+      src="https://res.cloudinary.com/applicationtestingnz/image/upload/v1636630770/penetration-testing-logo_ghyfql-removebg-preview_b1w75f.png"
+      class="w-50"
+    />
+  </div>
+  <div
+    class="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100"
+  >
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="loginForm.form.valid && onLogin(loginForm.value)"
+      novalidate
+      class="w-75"
+    >
+      <div class="mb-3">
+        <label for="login-username" class="form-label">Username</label>
+        <input
+          ngModel
+          #usernameInput="ngModel"
+          name="username"
+          type="text"
+          class="form-control"
+          id="login-username"
+          placeholder="username"
+          autocomplete="username"
+          minlength="3"
+          maxlength="20"
+          required
+        />
+        <div
+          *ngIf="usernameInput.errors && loginForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="usernameInput.errors.required">Username is required</div>
+          <div *ngIf="usernameInput.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="usernameInput.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="login-password" class="form-label">Password</label>
+        <input
+          ngModel
+          #passwordInput="ngModel"
+          name="password"
+          type="password"
+          class="form-control"
+          id="login-password"
+          placeholder="password"
+          autocomplete="current-password"
+          minlength="3"
+          required
+        />
+        <div
+          *ngIf="passwordInput.errors && loginForm.submitted"
+          class="alert alert-danger my-1"
+          role="alert"
+        >
+          <div *ngIf="passwordInput.errors.required">Password is required</div>
+          <div *ngIf="passwordInput.errors.minlength">
+            Password must be at least 3 characters
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <!-- TODO -> impliment funcionality -->
+            <label class="form-check-label" for="flexCheckDefault">
+              Keep me logged in
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6 text-lg-end">
+          <p class="small fw-bold py-1 mb-0">
+            Don't have an account?
+            <a
+              routerLink="/register"
+              routerLinkActive="router-link-active"
+              class="link-danger"
+              >Register</a
+            >
+          </p>
+        </div>
+      </div>
+      <button
+        [disabled]="loginForm.invalid"
+        type="submit"
+        class="btn btn-custom btn-lg btn-block mt-3"
+      >
+        Login Now
+      </button>
+    </form>
+  </div>
+</div>

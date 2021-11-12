@@ -1,0 +1,184 @@
+<div class="container">
+  <div class="row flex-lg-nowrap">
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile card">
+                <div class="row text-center my-2">
+                  <div class="col-12 col-md-12 mb-3">
+                    <div class="mb-2 mb-sm-0">
+                      <h3 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                        {{currentUser?.firstName}} {{currentUser?.lastName}}
+                      </h3>
+                      <p class="mb-0 fs-4">{{currentUser?.email}}</p>
+                      <div class="text-muted fs-5">
+                        <small
+                          >Last seen
+                          {{currentUser?.lastLoginDateDisplay}}</small
+                        >
+                      </div>
+                      <div class="text-muted fs-5">
+                        <small>Joined {{currentUser?.signUpDate}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-3 card">
+                  <div class="active card-body">
+                    <form
+                      #editUserProfileForm="ngForm"
+                      (ngSubmit)="onUpdateCurrentUser(editUserProfileForm)"
+                      class="row g-3"
+                      id="editUserProfileForm"
+                    >
+                      <div class="col-md-6">
+                        <label for="editUserProfileFirstName" class="form-label"
+                          >First Name</label
+                        >
+                        <input
+                          required
+                          [(ngModel)]="currentUser.firstName"
+                          name="firstName"
+                          type="text"
+                          class="form-control"
+                          id="editUserProfileFirstName"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="editUserProfileLastName" class="form-label"
+                          >Last Name</label
+                        >
+                        <input
+                          required
+                          [(ngModel)]="currentUser.lastName"
+                          name="lastName"
+                          type="text"
+                          class="form-control"
+                          id="editUserProfileLastName"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="editUserProfileUsername" class="form-label"
+                          >Username</label
+                        >
+                        <input
+                          required
+                          type="text"
+                          name="username"
+                          [(ngModel)]="currentUser.username"
+                          class="form-control"
+                          id="editUserProfileUsername"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="editUserProfileEmail" class="form-label"
+                          >Email</label
+                        >
+                        <input
+                          required
+                          type="email"
+                          name="email"
+                          [(ngModel)]="currentUser.email"
+                          class="form-control"
+                          id="editUserProfileEmail"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="editUserProfileRole" class="form-label"
+                          >Role</label
+                        >
+                        <select
+                          *ngIf="isAdmin"
+                          id="editUserProfileRole"
+                          [(ngModel)]="currentUser.role"
+                          name="role"
+                          class="form-select"
+                        >
+                          <option value="ROLE_USER">USER</option>
+                          <option value="ROLE_ADMIN">ADMIN</option>
+                        </select>
+                        <select
+                          *ngIf="!isAdmin"
+                          id="editUserProfileRole"
+                          [(ngModel)]="currentUser.role"
+                          name="role"
+                          class="form-select"
+                        >
+                          <option [disabled]="!isAdmin" value="ROLE_USER"
+                            >USER</option
+                          >
+                        </select>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <div class="form-check">
+                            <input
+                              [disabled]="!isAdmin"
+                              class="form-check-input"
+                              type="checkbox"
+                              id="editUserProfileActive"
+                              name="active"
+                              [(ngModel)]="currentUser.active"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="editUserProfileActive"
+                            >
+                              Active
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              [disabled]="!isAdmin"
+                              name="notLocked"
+                              [(ngModel)]="currentUser.notLocked"
+                              class="form-check-input"
+                              type="checkbox"
+                              id="editUserProfileUnlocked"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="editUserProfileUnlocked"
+                            >
+                              Unlocked
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <button
+                            (click)="onResetPassword(currentUser.email)"
+                            type="button"
+                            class="btn btn-dark"
+                            id="editResetEmailUserProfilePassword"
+                          >
+                            Reset Password
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="row my-3">
+                      <div class="col-md-6">
+                        <button
+                          [disabled]="editUserProfileForm.invalid"
+                          form="editUserProfileForm"
+                          type="submit"
+                          class="btn btn-secondary"
+                        >
+                          Save Changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

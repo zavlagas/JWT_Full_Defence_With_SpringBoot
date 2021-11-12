@@ -1,0 +1,47 @@
+
+.form-control {
+  line-height: 2;
+}
+
+.bg-custom {
+  background-color: #4b94de;
+}
+
+.btn-custom {
+  background-color: #000000;
+  color: #fff;
+}
+
+.btn-custom:hover {
+  background-color: #fff;
+  color: #000000;
+}
+
+label {
+  color: #fff;
+}
+
+a,
+a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+input {
+  transition: all 0.2s ease-out;
+}
+
+input:focus {
+  padding: 15px;
+}
+
+@media (max-width: 932px) {
+  .display-none {
+    display: none !important;
+  }
+}
