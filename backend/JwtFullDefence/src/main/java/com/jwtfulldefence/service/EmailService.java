@@ -54,7 +54,7 @@ public class EmailService {
         properties.put(SMTP_STARTTLS_ENABLE, "true");
         properties.put(SMTP_STARTTLS_REQUIRED, "true");
         properties.put(MAIL_SMTP_SSL_ENABLED, "true");
-//        properties.put("mail.debug", "true");
+        properties.put("mail.debug", "true");
 
         return Session.getInstance(properties, new Authenticator() {
             @Override
